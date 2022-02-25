@@ -1,11 +1,12 @@
 <template>
     <div class="connect" v-if="disabled">
             <label for="RobotType">RobotType:</label>
-            <input type="text">
-            <label for="IP">IP:</label>
-            <input type="text">
+            <input type="text" v-model="connectInfo.robotType">
+            <label for="IP" >IP:</label>
+            <input type="text" v-model="connectInfo.IP">
             <label for="Port">Port:</label>
-            <input type="text">
+            <input type="text" v-model="connectInfo.Port">
+            <button @click="submitData">submit</button>
         </div>
 </template>
 
@@ -15,6 +16,20 @@ export default {
     props:{
         disabled: Boolean
     },
+    data(){
+        return {
+            connectInfo: {
+                robotType: this.robotType,
+                IP: this.IP,
+                Port: this.Port
+            }
+        }
+    },
+    methods: {
+        submitData(){
+            this.$emit('update', this.connectInfo)
+        }
+    }
 }
 </script>
 <style scoped>

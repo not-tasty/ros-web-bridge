@@ -6,7 +6,7 @@
         <div class="item">Navigation</div>
         <div class="item">task</div>
     </div>
-    <robotConnect :disabled="close" @click="toggle"/>
+    <robotConnect :disabled="open" @update="updateConnectInfo"/>
 </template>
 <script>
 import robotConnect from '@/components/robotConnect.vue'
@@ -17,14 +17,20 @@ export default {
     },
     data() {
         return {
-            close: true
+            open: false,
+            robotType: '',
+            IP: '',
+            Port: '',
         }
     },
     methods:{
         toggle(){
-            this.close = !this.close
+            this.open = !this.open
         },
-     
+        updateConnectInfo(data){
+            console.log('data:',data);
+            this.robotType = data.robotType
+        }
     }
 }
 </script>
